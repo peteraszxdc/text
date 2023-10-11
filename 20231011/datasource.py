@@ -1,6 +1,7 @@
 import requests
 import csv
 import io
+__cities = []
 def __download()->list[list]:
     url = 'https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=CA18EE06-4A50-4861-9D97-7853353D7108'
     response=requests.request('GET',url)
@@ -17,13 +18,30 @@ def __download()->list[list]:
             next(csv_reader)
             return list(csv_reader)
 def cities_info()->list[list]:
-    cities = []
-    try:
-        data_list=__download()
-    except Exception as e:
-        print(f'錯誤:{e}')
-    else:
-        for row in data_list:
-            if row[0]=='111':
-                cities.append(row)
-    return cities
+    if len(__cities)==0:
+        try:
+            data_list=__download()
+        except Exception as e:
+            print(f'錯誤:{e}')
+        else:
+            for row in data_list:
+                if row[0]=='111':
+                    __cities.append(row)
+    return __cities
+
+def cityNames()->list[str]:
+    cities=cities_info()
+    names=[]
+    for row in cities:
+        cityNames=row[1]
+        names.append(cityNames)
+    return names
+
+def info(name:str) -> list[str]:
+    cities = cities_info()
+    for city in cities:
+        if city[1] == name:
+            return city
+
+    return []    
+    
