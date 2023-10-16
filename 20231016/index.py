@@ -15,12 +15,13 @@ class MyFrame(tk.Frame):
         self.configure(background="#C73E3A")
         self.img = Image.open("pets.png")
         self.pets = ImageTk.PhotoImage(self.img)
-        canvas = tk.Canvas(self,
-                           width=1000,
-                           height=800)
-        
-        canvas.create_image(500,400,image=self.pets,anchor=tk.CENTER)
-        canvas.pack()
+        petLabel = tk.Label(self,image=self.pets)
+        #canvas = tk.Canvas(self,
+        #                   width=1000,
+        #                   height=800)
+        #canvas.create_image(500,400,image=self.pets,anchor=tk.CENTER)
+        #canvas.pack()
+        petLabel.pack()
         self.pack(expand=1 ,fill='both')
 
         ''' canvas = tk.Canvas(self)
