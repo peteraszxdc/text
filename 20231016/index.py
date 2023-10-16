@@ -9,6 +9,8 @@ class Window(tk.Tk):
         self.title("lines")
         self.configure(background="#F8C3CD")
 
+
+
 class MyFrame(tk.Frame):
     def __init__(self,master,**kwargs):
         super().__init__(master,**kwargs)
@@ -24,11 +26,11 @@ class MyFrame(tk.Frame):
         petLabel.pack()
         self.pack(expand=1 ,fill='both')
 
-        ''' canvas = tk.Canvas(self)
-        canvas.create_line(15,30,200,30)
-        canvas.create_line(300,10,300,300,500,450,300,10, dash=(1,1))
-        canvas.pack(expand=1,fill="both")
-        self.pack(expand=1,fill="both") '''
+        #canvas = tk.Canvas(self)
+        #canvas.create_line(15,30,200,30)
+        #canvas.create_line(300,10,300,300,500,450,300,10, dash=(1,1))
+        #canvas.pack(expand=1,fill="both")
+        #self.pack(expand=1,fill="both") 
 
 
 def main():
