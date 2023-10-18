@@ -86,15 +86,9 @@ def getdata() -> list[list]:
         list_csvReader = [row for row in csvReader]
         return list_csvReader 
     
-    
-
-        
-
-
 def deletdata():
     if os.path.exists("台積電.csv"):
         os.remove("台積電.csv")
-
 
 def main():
     window = Window()
