@@ -1,3 +1,8 @@
 PyInputPlus>=0.2.12
 requests
 csv
+flask
+psycopg2-binary
+gunicorn
+pandas
+dash
