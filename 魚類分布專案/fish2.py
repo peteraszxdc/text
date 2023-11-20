@@ -19,6 +19,7 @@ class TKLable(tk.Label):
 class TKButton(tk.Button):
     def __init__(self, parents, **kwargs):
         super().__init__(parents, **kwargs)
+        self.config(font=("微軟正黑體", 10, "bold"))
 
 
 # Treeview
@@ -85,8 +86,8 @@ class Window(tk.Tk):
             row=0, column=0, columnspan=10
         )
 
-        TKLable(mainFrame, text="綱", bd=3).grid(row=1, column=0)
-        self.TaipeiArea_dict = ds.Get_TaipeiArea()
+        TKLable(mainFrame, text="原生種判定", bd=1).grid(row=1, column=0)
+        self.TaipeiArea_dict = ds.Get_FISHTYP()
         self.TaipeiAreaValue = tk.StringVar()
         self.TaipeiArea_Combo = ttk.Combobox(
             mainFrame,
@@ -100,64 +101,46 @@ class Window(tk.Tk):
             "<<ComboboxSelected>>", self.change_AreaVillage_Combo
         )
 
-        TKLable(mainFrame, text="目", bd=3).grid(row=1, column=2)
-        self.AreaVillageValue = tk.StringVar()
+        TKLable(mainFrame, text="年度", bd=1).grid(row=1, column=2)
+        self.TaipeiArea_dict = ds.Get_FISHYEAR()
+        #self.AreaVillageValue = tk.StringVar()
         self.AreaVillage_Combo = ttk.Combobox(
             mainFrame,
-            values=["全部"],
+            values=list(self.TaipeiArea_dict.keys()),
             justify="center",
-            textvariable=self.AreaVillageValue,
+            # textvariable=self.AreaVillageValue,
         )
         self.AreaVillage_Combo.grid(row=1, column=3)
         self.AreaVillage_Combo.current(0)
 
-        TKLable(mainFrame, text="科", bd=3).grid(row=1, column=4)
-        self.ScienceValue = tk.StringVar()
+        TKLable(mainFrame, text="地圖標記", bd=1).grid(row=1, column=4)
+        self.TaipeiArea_dict = ds.Get_MAP()
+        #self.ScienceValue = tk.StringVar()
         self.Science_Combo = ttk.Combobox(
             mainFrame,
-            values=["全部"],
+            values=list(self.TaipeiArea_dict.keys()),
             justify="center",
-            textvariable=self.ScienceValue,
+            #textvariable=self.ScienceValue,
         )
         self.Science_Combo.grid(row=1, column=5)
         self.Science_Combo.current(0)
 
-        TKLable(mainFrame, text="屬", bd=3).grid(row=1, column=6)
+        TKLable(mainFrame, text="中文名", bd=3).grid(row=1, column=6)
+        self.TaipeiArea_dict = ds.Get_FISHNAME()
         self.GenusValue = tk.StringVar()
         self.Genus_Combo = ttk.Combobox(
             mainFrame,
-            values=["全部"],
+            values=list(self.TaipeiArea_dict.keys()),
             justify="center",
             textvariable=self.GenusValue,
         )
         self.Genus_Combo.grid(row=1, column=7)
         self.Genus_Combo.current(0)
 
-        TKLable(mainFrame, text="種", bd=3).grid(row=1, column=8)
-        self.SpeciesValue = tk.StringVar()
-        self.Species_Combo = ttk.Combobox(
-            mainFrame,
-            values=["全部"],
-            justify="center",
-            textvariable=self.SpeciesValue,
-        )
-        self.Species_Combo.grid(row=1, column=9)
-        self.Species_Combo.current(0)
-
-        TKLable(mainFrame, text="街道名稱", bd=3).grid(row=2, column=0)
-        self.Search = tk.Entry(mainFrame, width=55)
-        self.Search.grid(row=2, column=1, columnspan=3)
-
-        TKLable(mainFrame, text="抵達時間(起)").grid(row=3, column=0)
-        self.TimeStart = tk.Entry(mainFrame, width=22)
-        self.TimeStart.grid(row=3, column=1)
-        TKLable(mainFrame, text="抵達時間(迄)").grid(row=3, column=2)
-        self.TimeEnd = tk.Entry(mainFrame, width=23)
-        self.TimeEnd.grid(row=3, column=3)
-
         self.keyButton = TKButton(mainFrame, text="搜尋", command=self.KeySearch)
-        self.keyButton.config(width=60)
-        self.keyButton.grid(row=4, columnspan=4)
+        self.keyButton.config(width=80, border=2)
+
+        self.keyButton.grid(row=4, column=0, columnspan=10, pady=(5, 0), sticky="nsew")
 
     def change_AreaVillage_Combo(self, event):
         towncode01 = self.TaipeiArea_dict[self.TaipeiAreaValue.get()]
