@@ -2,3 +2,5 @@ requests
 flask
 pandas
 gunicorn
+psycopg2-binary
+dash
