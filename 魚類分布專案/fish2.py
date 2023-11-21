@@ -97,6 +97,7 @@ class Window(tk.Tk):
         )
         self.TaipeiArea_Combo.grid(row=1, column=1)
         self.TaipeiArea_Combo.current(0)
+        #區域事件判定
         self.TaipeiArea_Combo.bind(
             "<<ComboboxSelected>>", self.change_AreaVillage_Combo
         )
